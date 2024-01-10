@@ -4,6 +4,8 @@
  */
 package com.mycompany.exerciciodois;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rafael.Evaristo
@@ -13,10 +15,47 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
     /**
      * Creates new form TemperatureConverterForm
      */
+    
+    private ConversorTemperatura conversor ;
+    
     public TemperatureConverterForm() {
-        initComponents();
+        initComponents();       
+        conversor = new ConversorTemperatura(this);
+    }
+   
+    public void exibirResultados(double celsius, double fahrenheit, double kelvin, String unidadeOrigem) {
+        String msgToDisplay ;         
+        msgToDisplay = "<html>Convertido de " + unidadeOrigem + "<br/>" + "Celsius:" + celsius + "<br/>" + "Fahrenheit:" + fahrenheit  + "<br/>" + "Kelvin:" + kelvin +"</html>" ;        
+        this.resultLabel.setText(msgToDisplay);
     }
 
+    
+    private boolean isInputValueValid(String originalValue) {
+        Double valor;
+
+        if(originalValue.isEmpty()){
+            return false;
+        }
+        
+        try {            
+            // Check if the convertion is possible
+            valor = Double.parseDouble(originalValue);
+        } catch (NumberFormatException  e) {
+            // Handle the exception of type NumberFormatException 
+            return false;
+        } 
+        
+        return true;
+    }
+    
+    private void showError(String message) {        
+        JOptionPane.showMessageDialog(null, message,"Erro",0);        
+    }
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,9 +69,9 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
         celsiusBtn = new javax.swing.JRadioButton();
         kelvinBtn = new javax.swing.JRadioButton();
         fahrenheitBtn = new javax.swing.JRadioButton();
-        msgArea = new javax.swing.JTextField();
         convertBtn = new javax.swing.JButton();
         origianlValueBox = new javax.swing.JTextField();
+        resultLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,20 +89,25 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
         buttonGroup1.add(fahrenheitBtn);
         fahrenheitBtn.setText("kelvin");
 
-        msgArea.setText("Waiting for convertion");
-        msgArea.addActionListener(new java.awt.event.ActionListener() {
+        convertBtn.setText("Convert");
+        convertBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                msgAreaActionPerformed(evt);
+                convertBtnActionPerformed(evt);
             }
         });
-
-        convertBtn.setText("Convert");
 
         origianlValueBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 origianlValueBoxActionPerformed(evt);
             }
         });
+
+        resultLabel.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        resultLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        resultLabel.setText("À espera de conversão");
+        resultLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        resultLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        resultLabel.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,17 +118,13 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
                 .addComponent(origianlValueBox, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(convertBtn)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fahrenheitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(celsiusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(kelvinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                        .addComponent(msgArea, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52))))
+                    .addComponent(convertBtn)
+                    .addComponent(fahrenheitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(celsiusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kelvinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(80, 80, 80)
+                .addComponent(resultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,12 +140,15 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(kelvinBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(msgArea, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22)
-                .addComponent(convertBtn)
-                .addContainerGap(169, Short.MAX_VALUE))
+                        .addGap(272, 272, 272)
+                        .addComponent(convertBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(resultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
+
+        resultLabel.getAccessibleContext().setAccessibleName("ResultLabel");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -114,13 +157,35 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_kelvinBtnActionPerformed
 
-    private void msgAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgAreaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_msgAreaActionPerformed
-
     private void origianlValueBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_origianlValueBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_origianlValueBoxActionPerformed
+
+    
+    
+    private void convertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertBtnActionPerformed
+
+        String valueToConvertText = origianlValueBox.getText(); 
+        
+        if(! this.isInputValueValid(valueToConvertText)){
+            this.showError(valueToConvertText + ": Não é valido");
+            return;
+        }
+        
+        double originalValue = Double.parseDouble(valueToConvertText);
+        
+        if(this.kelvinBtn.isSelected()){
+            this.conversor.converterKelvin(originalValue);
+        }
+        else if (this.celsiusBtn.isSelected()){
+            this.conversor.converterCelsius(originalValue);
+        }
+        else if(this.fahrenheitBtn.isSelected()) {
+            this.conversor.converterFahrenheit(originalValue);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_convertBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,7 +229,7 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
     private javax.swing.JButton convertBtn;
     private javax.swing.JRadioButton fahrenheitBtn;
     private javax.swing.JRadioButton kelvinBtn;
-    private javax.swing.JTextField msgArea;
     private javax.swing.JTextField origianlValueBox;
+    private javax.swing.JLabel resultLabel;
     // End of variables declaration//GEN-END:variables
 }

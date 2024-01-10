@@ -33,9 +33,9 @@
               <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="convertBtn" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="fahrenheitBtn" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
-                  <Component id="celsiusBtn" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
                   <Component id="kelvinBtn" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                  <Component id="celsiusBtn" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
+                  <Component id="fahrenheitBtn" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
               <Component id="resultLabel" pref="257" max="32767" attributes="0"/>
@@ -54,9 +54,9 @@
                           <Component id="origianlValueBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fahrenheitBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="kelvinBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="fahrenheitBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="272" max="-2" attributes="0"/>
@@ -81,7 +81,7 @@
         <Property name="text" type="java.lang.String" value="celsius"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="kelvinBtn">
+    <Component class="javax.swing.JRadioButton" name="fahrenheitBtn">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
@@ -89,16 +89,19 @@
         <Property name="text" type="java.lang.String" value="fahrenheit"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kelvinBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fahrenheitBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="fahrenheitBtn">
+    <Component class="javax.swing.JRadioButton" name="kelvinBtn">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="kelvin"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kelvinBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="convertBtn">
       <Properties>

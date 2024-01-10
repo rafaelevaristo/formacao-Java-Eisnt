@@ -9,6 +9,8 @@ package com.mycompany.exerciciodois;
  * @author Rafael.Evaristo
  */
 
+
+// Dont know the formulas!!!! So i've used the page refrenced by ti trainer .https://www.infoescola.com/fisica/conversao-de-escalas-termometricas/
 public class ConversorTemperatura {
 
     public ConversorTemperatura(TemperatureConverterForm formConvertion) {
@@ -25,24 +27,24 @@ public class ConversorTemperatura {
 
     public void converterCelsius(double temperatura) {
         double celsius = temperatura;
-        double fahrenheit = (celsius * 9 / 5) + 32;
-        double kelvin = celsius + 273.15;
+        double fahrenheit = celsius * 1.8 + 32;
+        double kelvin = celsius + 273;
 
         formConvertion.exibirResultados(celsius, fahrenheit, kelvin, "Celsius");
     }
 
     public void converterFahrenheit(double temperatura) {
         double fahrenheit = temperatura;
-        double celsius = (fahrenheit - 32) * 5 / 9;
-        double kelvin = (fahrenheit + 459.67) * 5 / 9;
+        double celsius = (fahrenheit - 32) / 1.8 ;
+        double kelvin = (fahrenheit - 32) * 5 / 9 + 273;
 
         formConvertion.exibirResultados(celsius, fahrenheit, kelvin, "Fahrenheit");
     }
 
     public void converterKelvin(double temperatura) {
         double kelvin = temperatura;
-        double celsius = kelvin - 273.15;
-        double fahrenheit = (kelvin * 9 / 5) - 459.67;
+        double celsius = kelvin - 273;
+        double fahrenheit = (kelvin - 273) * 1.8 + 32;
 
         formConvertion.exibirResultados(celsius, fahrenheit, kelvin, "Kelvin");
     }

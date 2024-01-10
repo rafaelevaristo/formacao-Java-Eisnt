@@ -67,8 +67,8 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         celsiusBtn = new javax.swing.JRadioButton();
-        kelvinBtn = new javax.swing.JRadioButton();
         fahrenheitBtn = new javax.swing.JRadioButton();
+        kelvinBtn = new javax.swing.JRadioButton();
         convertBtn = new javax.swing.JButton();
         origianlValueBox = new javax.swing.JTextField();
         resultLabel = new javax.swing.JLabel();
@@ -78,16 +78,21 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
         buttonGroup1.add(celsiusBtn);
         celsiusBtn.setText("celsius");
 
+        buttonGroup1.add(fahrenheitBtn);
+        fahrenheitBtn.setText("fahrenheit");
+        fahrenheitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fahrenheitBtnActionPerformed(evt);
+            }
+        });
+
         buttonGroup1.add(kelvinBtn);
-        kelvinBtn.setText("fahrenheit");
+        kelvinBtn.setText("kelvin");
         kelvinBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kelvinBtnActionPerformed(evt);
             }
         });
-
-        buttonGroup1.add(fahrenheitBtn);
-        fahrenheitBtn.setText("kelvin");
 
         convertBtn.setText("Convert");
         convertBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -119,9 +124,9 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
                 .addGap(97, 97, 97)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(convertBtn)
-                    .addComponent(fahrenheitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(kelvinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(celsiusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kelvinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fahrenheitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(80, 80, 80)
                 .addComponent(resultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addContainerGap())
@@ -136,9 +141,9 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
                             .addComponent(celsiusBtn)
                             .addComponent(origianlValueBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fahrenheitBtn)
+                        .addComponent(kelvinBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(kelvinBtn))
+                        .addComponent(fahrenheitBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(272, 272, 272)
                         .addComponent(convertBtn))
@@ -153,9 +158,9 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void kelvinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kelvinBtnActionPerformed
+    private void fahrenheitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fahrenheitBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kelvinBtnActionPerformed
+    }//GEN-LAST:event_fahrenheitBtnActionPerformed
 
     private void origianlValueBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_origianlValueBoxActionPerformed
         // TODO add your handling code here:
@@ -174,18 +179,22 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
         
         double originalValue = Double.parseDouble(valueToConvertText);
         
-        if(this.kelvinBtn.isSelected()){
-            this.conversor.converterKelvin(originalValue);
+        if(this.fahrenheitBtn.isSelected()){
+            this.conversor.converterFahrenheit(originalValue);
         }
         else if (this.celsiusBtn.isSelected()){
             this.conversor.converterCelsius(originalValue);
         }
-        else if(this.fahrenheitBtn.isSelected()) {
-            this.conversor.converterFahrenheit(originalValue);
+        else if(this.kelvinBtn.isSelected()) {
+            this.conversor.converterKelvin(originalValue);
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_convertBtnActionPerformed
+
+    private void kelvinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kelvinBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kelvinBtnActionPerformed
 
     /**
      * @param args the command line arguments

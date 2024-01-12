@@ -4,8 +4,8 @@
  */
 package com.mycompany.exerciciotres;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -14,30 +14,32 @@ import java.util.List;
 
 public class MenuDePratos {
     
-    private List<Prato> pratos;
+    private HashMap<String, Prato> pratos;
 
     public MenuDePratos() {
-        this.pratos = new ArrayList<>();
+        this.pratos = new HashMap<>();
     }
 
     public void adicionarPrato(Prato prato) {
-        this.pratos.add(prato);
+        this.pratos.put(prato.getNome(), prato);
         System.out.println("Prato adicionado ao menu: " + prato.getNome());
     }
 
-    public void removerPrato(Prato prato) {
-        if (this.pratos.remove(prato)) {
+    public Boolean removerPrato(Prato prato) {
+        if (this.pratos.remove(prato.getNome(), prato)) {
             System.out.println("Prato removido do menu: " + prato.getNome());
+            return true;
+            
         } else {
-            System.out.println("O prato não está no menu.");
-        }
+            System.out.println("O prato não está no menu.");            
+        }        
+        return false;
+    }
+    
+    public HashMap<String, Prato> GetPratos() {
+        return this.pratos;
     }
 
-    public void listarPratos() {
-        System.out.println("----- Menu de Pratos -----");
-        for (Prato prato : this.pratos) {
-            System.out.println( prato.toString() );
-        }
-        System.out.println("--------------------------");
-    }
+    
+    
 }

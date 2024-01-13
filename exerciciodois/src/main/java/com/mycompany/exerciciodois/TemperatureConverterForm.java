@@ -79,7 +79,7 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
         kelvinBtn = new javax.swing.JRadioButton();
         celsiusBtn = new javax.swing.JRadioButton();
         fahrenheitBtn = new javax.swing.JRadioButton();
-        jLabel4 = new javax.swing.JLabel();
+        lblAluno = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -146,13 +146,19 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jLabel4.setText("Rafael Evaristo");
+        lblAluno.setText("Rafael Evaristo");
 
         jLabel1.setText("Valor em ºC");
 
         jLabel2.setText("Valor em ºK");
 
         jLabel3.setText("Valor em ºF");
+
+        lblCel.setText("0");
+
+        lblKel.setText("0");
+
+        lblFah.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -177,7 +183,9 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblCel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -186,9 +194,6 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(lblFah)))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(lblCel)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,7 +206,7 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(192, 192, 192))
@@ -227,7 +232,7 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
+                        .addComponent(lblAluno)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -264,8 +269,10 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
         else if(this.kelvinBtn.isSelected()) {
             this.conversor.converterKelvin(originalValue);
         }
-
-        // TODO add your handling code here:
+        else{
+            this.showError("Escolha qual o formato original");
+        
+        }
     }//GEN-LAST:event_convertBtnActionPerformed
 
     private void kelvinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kelvinBtnActionPerformed
@@ -316,10 +323,10 @@ public class TemperatureConverterForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton kelvinBtn;
+    private javax.swing.JLabel lblAluno;
     private javax.swing.JLabel lblCel;
     private javax.swing.JLabel lblFah;
     private javax.swing.JLabel lblKel;
